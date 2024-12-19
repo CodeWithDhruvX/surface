@@ -1,3 +1,6 @@
 [submodule "Submarine"]
 	path = Submarine
 	url = git@github.com-work:CodeWithDhruvX/Submarine.git
+[submodule "little-submarine"]
+	path = little-submarine
+	url = git@github.com-work:CodeWithDhruvX/little-submarine.git
