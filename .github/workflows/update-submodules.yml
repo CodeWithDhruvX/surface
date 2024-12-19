@@ -9,13 +9,21 @@ jobs:
   update-submodules:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Check out the repository with submodules
+      # Step 1: Set up SSH Key for Submodule Access
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      # Step 2: Checkout Repository with Submodules
       - name: Checkout Repository with Submodules
         uses: actions/checkout@v3
         with:
           submodules: recursive
 
-      # Step 2: Update Submodules to Latest Commits
+      # Step 3: Update Submodules to Latest Commits
       - name: Update Submodules
         run: |
           git submodule update --remote --recursive
